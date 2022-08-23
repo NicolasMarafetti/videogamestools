@@ -63,7 +63,6 @@ const Index = (props: IndexProps) => {
               The video games collective toolbox
             </h1>
           )}
-          <h2>TEST WRONG COMMIT</h2>
           <div className="flex">
             <HomeRandomTools tools={props.tools} />
             {mobileType === 'desktop' && <HomePresentation />}
