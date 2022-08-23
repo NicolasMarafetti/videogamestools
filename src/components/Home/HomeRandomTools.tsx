@@ -1,34 +1,40 @@
-import error from 'next/error';
 import React, { useState } from 'react';
 
+import type { ToolObjectWithGame } from '@/interfaces/tools';
+
 import HomeRandomToolItem from './HomeRandomToolItem';
+
+interface HomeRandomToolsProps {
+  tools: ToolObjectWithGame[];
+}
 
 interface HomeRandomToolsState {
   error: boolean;
   games: any[];
-  tools: any[];
 }
 
-export default function HomeRandomTools() {
+export default function HomeRandomTools(props: HomeRandomToolsProps) {
   const [state] = useState<HomeRandomToolsState>({
     error: false,
     games: [],
-    tools: [],
   });
 
   return (
-    <div id="home_random_tools">
-      <h2>Random Tools</h2>
+    <div
+      className="max-w-full sm:w-full xl:flex-1 xl:pl-4"
+      id="home_random_tools"
+    >
+      <h2 className="my-4 mb-6 sm:my-3 xl:mb-14 xl:text-2xl">Random Tools</h2>
       <div>
-        {error && <p>Couldn&apos;t get the tools</p>}
-        <ul>
-          {state.tools.map((tool) => (
+        {state.error && <p>Couldn&apos;t get the tools</p>}
+        <ul className="flex flex-col flex-wrap justify-around p-0 sm:flex-row">
+          {props.tools.map((tool) => (
             <HomeRandomToolItem
               key={tool.id}
               id={tool.id}
               name={tool.name}
               description={tool.description}
-              game={state.games.find((game) => game.id === tool.game)}
+              game={tool.Game}
             />
           ))}
         </ul>

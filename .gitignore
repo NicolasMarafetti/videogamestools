@@ -32,9 +32,16 @@ yarn-error.log*
 
 # dotenv local files
 .env*.local
+.env
 
 # local folder
 local
 
 # vercel
 .vercel
+
+# Virtual Studio Code
+/.vscode
+
+# Dynamic images
+/public/assets/images/games

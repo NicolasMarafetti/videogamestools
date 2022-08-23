@@ -2,21 +2,22 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
+import { isMobile } from 'react-device-detect';
 
 export default function HomeSuggestButton() {
-  const [buttonText, setButtonText] = useState('Suggest');
+  const [mobile, setMobile] = useState(true);
 
   useEffect(() => {
-    if (window && window.innerWidth >= 500) setButtonText('Suggest a tool');
+    setMobile(isMobile);
   });
 
   return (
     <Link href="/add_tool">
-      <a>
-        <div>
-          <FontAwesomeIcon icon={faPlus} />
+      <a className="flex w-40 items-center rounded-full border-2 border-neutral-600 bg-none p-1 font-light">
+        <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-full border-2 border-neutral-600">
+          <FontAwesomeIcon className="w-4" icon={faPlus} />
         </div>
-        {buttonText}
+        {mobile ? 'Suggest' : 'Suggest a tool'}
       </a>
     </Link>
   );

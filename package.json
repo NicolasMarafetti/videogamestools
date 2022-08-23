@@ -1,10 +1,14 @@
 {
   "name": "next-js-boilerplate",
   "version": "2.1.0",
+  "prisma": {
+    "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
+  },
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3002",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3002",
+    "seed": "npx prisma db push --force-reset && npx prisma db seed",
     "build-stats": "cross-env ANALYZE=true npm run build",
     "export": "next export",
     "build-prod": "run-s clean build export",
@@ -14,17 +18,21 @@
     "test": "jest",
     "cypress": "cypress open",
     "cypress:headless": "cypress run",
-    "e2e": "start-server-and-test dev http://localhost:3000 cypress",
-    "e2e:headless": "start-server-and-test dev http://localhost:3000 cypress:headless",
+    "e2e": "start-server-and-test dev http://localhost:3002 cypress",
+    "e2e:headless": "start-server-and-test dev http://localhost:3002 cypress:headless",
     "prepare": "husky install"
   },
   "dependencies": {
     "@fortawesome/free-solid-svg-icons": "^6.1.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@prisma/client": "^4.2.1",
+    "@types/bcrypt": "^5.0.0",
     "axios": "^0.27.2",
+    "bcrypt": "^5.0.1",
     "next": "^12.2.2",
     "next-seo": "^5.4.0",
     "react": "^18.2.0",
+    "react-device-detect": "^2.2.2",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
@@ -37,7 +45,7 @@
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.5",
-    "@types/node": "^18.0.4",
+    "@types/node": "^18.7.11",
     "@types/react": "^18.0.15",
     "@typescript-eslint/eslint-plugin": "^5.30.6",
     "@typescript-eslint/parser": "^5.30.6",
@@ -70,9 +78,11 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.14",
     "prettier": "^2.7.1",
+    "prisma": "^4.2.1",
     "rimraf": "^3.0.2",
     "start-server-and-test": "^1.14.0",
     "tailwindcss": "^3.1.6",
+    "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   },
   "author": "Ixartz (https://github.com/ixartz)"

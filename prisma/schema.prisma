@@ -1,0 +1,69 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model Game{
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  name          String
+  image         String?
+  date_created  DateTime    @default(now())
+  date_updated  DateTime    @default(now())
+
+  Tools         Tool[]
+}
+
+model PasswordResets{
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  user          String
+  code          String
+  date_created  DateTime    @default(now())
+  date_updated  DateTime    @default(now())
+
+  User          User        @relation(fields: [user], references: [id])
+}
+
+model Support{
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  user          String?
+  type          String
+  description   String
+  date_created  DateTime    @default(now())
+  date_updated  DateTime    @default(now())
+
+  User          User?        @relation(fields: [user], references: [id])
+}
+
+model Tool{
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  game          String
+  name          String
+  url           String
+  description   String
+  date_created  DateTime    @default(now())
+  date_updated  DateTime    @default(now())
+
+  Game          Game        @relation(fields: [game], references: [id])
+}
+
+model User{
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
+  country         String
+  pseudo          String
+  first_name      String
+  last_name       String
+  email           String
+  password        String
+  date_created    DateTime    @default(now())
+  date_updated    DateTime    @default(now())
+
+  PasswordResets  PasswordResets[]
+  Supports        Support[]
+}

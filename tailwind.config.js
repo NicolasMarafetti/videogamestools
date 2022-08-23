@@ -16,6 +16,7 @@ module.exports = {
     },
     extend: {
       colors: {
+        'black-rgba': 'rgba(0, 0, 0, 0.4)',
         gray: {
           100: '#f7fafc',
           200: '#edf2f7',
@@ -28,6 +29,7 @@ module.exports = {
           900: '#1a202c',
         },
         blue: {
+          DEFAULT: '#58C0EB',
           100: '#ebf8ff',
           200: '#bee3f8',
           300: '#90cdf4',
@@ -37,6 +39,9 @@ module.exports = {
           700: '#2b6cb0',
           800: '#2c5282',
           900: '#2a4365',
+        },
+        orange: {
+          DEFAULT: '#FA7921',
         },
       },
     },

@@ -1,3 +1,4 @@
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
 import error from 'next/error';
@@ -62,7 +63,7 @@ export default function HomeSearching(props: HomeSearchingProps) {
     <div id="home_searching">
       <div>
         <div>
-          <FontAwesomeIcon icon="search" size="2x" />
+          <FontAwesomeIcon icon={faSearch} size="2x" />
           <input
             name="search"
             type="text"
@@ -71,7 +72,12 @@ export default function HomeSearching(props: HomeSearchingProps) {
             onChange={searchChanged}
           />
         </div>
-        <FontAwesomeIcon icon="times" size="2x" onClick={props.stopSearching} />
+        <FontAwesomeIcon
+          className="h-4 w-4 p-4"
+          icon={faTimes}
+          size="2x"
+          onClick={props.stopSearching}
+        />
       </div>
       <HomeSearchingResults games={state.games} tools={state.tools} />
       {error && <p>Error during the search</p>}

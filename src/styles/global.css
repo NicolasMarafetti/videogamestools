@@ -1,3 +1,6 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,500");
+@import url("https://fonts.googleapis.com/css?family=Roboto Slab:300,400,500,600,700");
+
 @tailwind base;
 
 a {
@@ -18,4 +21,23 @@ a:hover {
 
 .content ul {
   @apply my-6;
+}
+
+body {
+  color: #6e6e6e;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Roboto Slab, serif;
+  font-weight: 600;
+}
+
+@media all and (min-width: 1280px) {
+  h1 {
+    font-size: 26px;
+  }
+
+  h2 {
+    font-size: 20px;
+  }
 }
