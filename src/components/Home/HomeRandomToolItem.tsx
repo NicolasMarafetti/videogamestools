@@ -10,7 +10,7 @@ interface HomeRandomToolItemProps {
 
 export default function HomeRandomToolItem(props: HomeRandomToolItemProps) {
   const backgroundImageSrc =
-    props.game && props.game.image ? `url('assets/images/games/lol.jpg')` : '';
+    props.game && props.game.image ? `assets/images/games/lol.jpg` : '';
 
   return (
     <li className="mb-14 flex max-w-full flex-col font-light sm:w-[24vw] xl:w-[10vw]">
@@ -26,7 +26,7 @@ export default function HomeRandomToolItem(props: HomeRandomToolItemProps) {
         <div
           className="flex h-28 w-40 items-center justify-center border border-black bg-cover bg-center bg-no-repeat sm:h-[16.5vw] sm:w-[16.5vw] xl:h-[10vw] xl:w-[10vw]"
           style={{
-            backgroundImage: backgroundImageSrc,
+            backgroundImage: `url('${backgroundImageSrc}')`,
           }}
         >
           {props.game && !props.game.image && (

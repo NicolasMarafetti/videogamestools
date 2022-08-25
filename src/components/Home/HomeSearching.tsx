@@ -1,7 +1,6 @@
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
-import error from 'next/error';
 import React, { useState } from 'react';
 
 import HomeSearchingResults from './HomeSearchingResults';
@@ -36,35 +35,38 @@ export default function HomeSearching(props: HomeSearchingProps) {
     if (!newSearchValue) {
       setState({
         ...state,
+        search: '',
         error: false,
         games: [],
         tools: [],
       });
     } else {
       axios
-        .get(
-          `${process.env.REACT_APP_SERVER_URL}search?search=${newSearchValue}`
-        )
+        .get(`/api/search?search=${newSearchValue}`)
         .then((res) => {
           setState({
             ...state,
+            search: newSearchValue,
             error: false,
             games: res.data.games,
             tools: res.data.tools,
           });
         })
-        .catch(() => {
+        .catch((errorTmp) => {
+          // eslint-disable-next-line no-console
+          console.error(errorTmp);
           setState({ ...state, error: true });
         });
     }
   }
 
   return (
-    <div id="home_searching">
-      <div>
-        <div>
-          <FontAwesomeIcon icon={faSearch} size="2x" />
+    <div className="absolute inset-0 bg-white p-4" id="home_searching">
+      <div className="flex h-10 items-center">
+        <div className="flex h-full flex-1 items-center border border-black px-2">
+          <FontAwesomeIcon className="w-5" icon={faSearch} />
           <input
+            className="h-full w-40 flex-1 px-2 text-sm font-light focus:outline-none"
             name="search"
             type="text"
             autoFocus={true}
@@ -73,14 +75,13 @@ export default function HomeSearching(props: HomeSearchingProps) {
           />
         </div>
         <FontAwesomeIcon
-          className="h-4 w-4 p-4"
+          className="h-10 w-10 p-2"
           icon={faTimes}
-          size="2x"
           onClick={props.stopSearching}
         />
       </div>
       <HomeSearchingResults games={state.games} tools={state.tools} />
-      {error && <p>Error during the search</p>}
+      {state.error && <p>Error during the search</p>}
     </div>
   );
 }

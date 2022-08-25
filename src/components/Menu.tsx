@@ -36,7 +36,7 @@ export default function Menu(props: MenuProps) {
         <ul className="m-0 p-4">
           <li className="pb-4 text-sm font-light">
             <button
-              className="font-light text-black"
+              className="border-0 font-light text-black"
               onClick={() => props.changePage('/')}
             >
               Home
@@ -46,7 +46,7 @@ export default function Menu(props: MenuProps) {
             <Fragment>
               <li className="pb-4 text-sm font-light">
                 <button
-                  className="font-light text-black"
+                  className="border-0 font-light text-black"
                   onClick={() => props.changePage('/signin')}
                 >
                   Create an account
@@ -54,7 +54,7 @@ export default function Menu(props: MenuProps) {
               </li>
               <li className="pb-4 text-sm font-light">
                 <button
-                  className="font-light text-black"
+                  className="border-0 font-light text-black"
                   onClick={() => props.changePage('/login')}
                 >
                   Log in
@@ -66,7 +66,7 @@ export default function Menu(props: MenuProps) {
           )}
           <li className="pb-4 text-sm font-light">
             <button
-              className="font-light text-black"
+              className="border-0 font-light text-black"
               onClick={() => props.changePage('/support')}
             >
               Support

@@ -9,6 +9,7 @@ import HomeSuggestButton from '@/components/Home/HomeSuggestButton';
 import type { ToolObjectWithGame } from '@/interfaces/tools';
 import { Meta } from '@/layouts/Meta';
 import { getDeviceType } from '@/utils/device';
+import { getUserFromCookie } from '@/utils/users-helpers';
 
 interface IndexProps {
   tools: ToolObjectWithGame[];
@@ -24,7 +25,7 @@ const Index = (props: IndexProps) => {
   const [state, setState] = useState<IndexState>({
     menuOpen: true,
     searching: false,
-    user: null,
+    user: getUserFromCookie(),
   });
 
   const [mobileType, setMobileType] = useState('desktop');
