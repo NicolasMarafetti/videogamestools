@@ -14,35 +14,39 @@ export default function DesktopMenu(props: DesktopMenuProps) {
       className="absolute inset-y-0 right-10 flex w-[24vw] justify-between py-3 text-white"
       id="desktop_menu"
     >
-      <ul className="flex flex-col justify-between p-0">
-        <li>
+      <ul className="flex flex-wrap justify-between">
+        <li className="px-2">
           <FontAwesomeIcon className="mr-2 inline-block w-4" icon={faUser} />
           {props.user ? props.user.pseudo : 'Not logged'}
         </li>
-      </ul>
-      <ul className="flex flex-col justify-between p-0">
-        {!props.user && (
-          <li>
-            <Link href="/signin">
-              <a className="text-white">Sign in</a>
-            </Link>
-          </li>
-        )}
-        <li>
+        <li className="px-2">
+          <Link href="/games">
+            <a className="text-white">Games</a>
+          </Link>
+        </li>
+        <li className="px-2">
           <Link href="/support">
             <a className="text-white">Support</a>
           </Link>
         </li>
-      </ul>
-      <ul className="flex flex-col justify-between p-0">
-        {!props.user && (
-          <li>
-            <Link href="/login">
-              <a className="text-white">Log in</a>
-            </Link>
+        {props.user ? (
+          <li className="cursor-pointer px-2" onClick={props.logOff}>
+            Log out
           </li>
+        ) : (
+          <>
+            <li className="px-2">
+              <Link href="/signin">
+                <a className="text-white">Sign in</a>
+              </Link>
+            </li>
+            <li className="px-2">
+              <Link href="/login">
+                <a className="text-white">Log in</a>
+              </Link>
+            </li>
+          </>
         )}
-        {props.user && <li onClick={props.logOff}>Log out</li>}
       </ul>
     </div>
   );

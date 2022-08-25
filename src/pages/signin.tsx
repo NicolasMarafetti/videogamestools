@@ -3,16 +3,20 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'universal-cookie';
 
+import Header from '@/components/Header';
+import Menu from '@/components/Menu';
 import { countries } from '@/config/countries';
+import { getUserFromCookie } from '@/utils/users-helpers';
 
 const cookies = new Cookies();
 
 interface SigninState {
   error: string;
   loading: boolean;
+  menuOpen: boolean;
   success: boolean;
 }
 
@@ -20,8 +24,14 @@ export default function Signin() {
   const [state, setState] = useState<SigninState>({
     error: '',
     loading: false,
+    menuOpen: false,
     success: false,
   });
+
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    setUser(getUserFromCookie());
+  }, []);
 
   const router = useRouter();
 
@@ -33,8 +43,8 @@ export default function Signin() {
   const lastname = useRef<HTMLInputElement>(null);
   const email = useRef<HTMLInputElement>(null);
 
-  const userLoggedIn = (user: User) => {
-    cookies.set('user', JSON.stringify(user));
+  const userLoggedIn = (newUser: User) => {
+    cookies.set('user', JSON.stringify(newUser));
   };
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
@@ -96,6 +106,8 @@ export default function Signin() {
 
   return (
     <div className="sm:flex sm:flex-col xl:items-center" id="sign_in">
+      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      <Header state={state} setState={setState} user={user} />
       <h1 className="my-2 text-center">Create an account</h1>
       <form className="px-5 xl:w-[45vw]" onSubmit={submit}>
         <div className="flex flex-wrap justify-between xl:max-w-full">

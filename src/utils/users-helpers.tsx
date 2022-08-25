@@ -5,3 +5,11 @@ export function getUserFromCookie() {
 
   return cookies.get('user');
 }
+
+export function logOut(router: any) {
+  const cookies = new Cookies();
+
+  cookies.remove('user');
+
+  router.reload();
+}

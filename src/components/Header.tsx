@@ -1,65 +1,54 @@
-import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Link from 'next/link';
+import type { User } from '@prisma/client';
 import { useRouter } from 'next/router';
 import React, { useEffect, useState } from 'react';
 
 import { getDeviceType } from '@/utils/device';
+import { openMenu } from '@/utils/menu-helpers';
+import { logOut } from '@/utils/users-helpers';
 
 import DesktopMenu from './DesktopMenu';
 
 interface HeaderProps {
-  logOff: any;
-  onOpenMenu: any;
-  user: any;
+  setState: any;
+  state: any;
+  user: null | User;
 }
 
 export default function Header(props: HeaderProps) {
   const [deviceType, setDeviceType] = useState('desktop');
 
-  const router = useRouter();
   const logoToUse =
     deviceType === 'mobile_horizontal'
       ? '/assets/images/logo/logo-full.png'
       : '/assets/images/logo/logo-medium.png';
-  const currentLocation = router.pathname;
-  // const menuLogoSize = deviceType === 'mobile_horizontal' ? '3x' : '4x';
+
+  const router = useRouter();
 
   useEffect(() => {
     setDeviceType(getDeviceType());
   });
 
-  const chooseIcon = () => {
-    switch (currentLocation) {
-      case '/':
-        if (deviceType === 'desktop') {
-          return <></>;
-        }
-        return (
-          <FontAwesomeIcon
-            className="absolute left-2 w-8"
-            icon={faBars}
-            onClick={props.onOpenMenu}
-          />
-        );
+  const onOpenMenu = () => {
+    openMenu(props.setState, props.state);
+  };
 
-      case '/forget_password':
-        return (
-          <Link href="/login">
-            <a className="absolute left-2 text-black">
-              <FontAwesomeIcon icon="chevron-left" size="2x" />
-            </a>
-          </Link>
-        );
-      default:
-        return (
-          <Link href="/">
-            <a className="absolute left-2 text-black">
-              <FontAwesomeIcon className="h-auto w-10" icon={faHome} />
-            </a>
-          </Link>
-        );
+  const onLogOff = () => {
+    logOut(router);
+  };
+
+  const chooseIcon = () => {
+    if (deviceType === 'desktop') {
+      return <></>;
     }
+    return (
+      <FontAwesomeIcon
+        className="absolute left-2 w-8"
+        icon={faBars}
+        onClick={onOpenMenu}
+      />
+    );
   };
 
   return (
@@ -70,8 +59,8 @@ export default function Header(props: HeaderProps) {
         src={logoToUse}
         alt="logo medium"
       />
-      {currentLocation === '/' && deviceType === 'desktop' && (
-        <DesktopMenu logOff={props.logOff} user={props.user} />
+      {deviceType === 'desktop' && (
+        <DesktopMenu logOff={onLogOff} user={props.user} />
       )}
     </header>
   );

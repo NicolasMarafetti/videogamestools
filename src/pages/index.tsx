@@ -1,11 +1,13 @@
 import { useEffect, useState } from 'react';
 import { getRandomToolsServerSide } from 'utils/tools';
 
+import Header from '@/components/Header';
 import HomePresentation from '@/components/Home/HomePresentation';
 import HomeRandomTools from '@/components/Home/HomeRandomTools';
 import HomeSearchButton from '@/components/Home/HomeSearchButton';
 import HomeSearching from '@/components/Home/HomeSearching';
 import HomeSuggestButton from '@/components/Home/HomeSuggestButton';
+import Menu from '@/components/Menu';
 import type { ToolObjectWithGame } from '@/interfaces/tools';
 import { Meta } from '@/layouts/Meta';
 import { getDeviceType } from '@/utils/device';
@@ -18,19 +20,21 @@ interface IndexProps {
 interface IndexState {
   searching: boolean;
   menuOpen: boolean;
-  user: any;
 }
 
 const Index = (props: IndexProps) => {
   const [state, setState] = useState<IndexState>({
-    menuOpen: true,
+    menuOpen: false,
     searching: false,
-    user: getUserFromCookie(),
   });
 
+  const [user, setUser] = useState(null);
   const [mobileType, setMobileType] = useState('desktop');
 
-  useEffect(() => setMobileType(getDeviceType()));
+  useEffect(() => {
+    setUser(getUserFromCookie());
+    setMobileType(getDeviceType());
+  }, []);
 
   const searchButtonClicked = () => {
     setState({
@@ -52,6 +56,8 @@ const Index = (props: IndexProps) => {
         title="Next.js Boilerplate Presentation"
         description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
       />
+      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      <Header state={state} setState={setState} user={user} />
       <main className="relative">
         {state.searching && <HomeSearching stopSearching={stopSearching} />}
         <div className="px-3">

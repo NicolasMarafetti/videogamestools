@@ -33,6 +33,7 @@ export async function getRandomToolsServerSide() {
       date_updated: tool.date_created.toISOString(),
       Game: {
         ...tool.Game,
+        date_release: tool.Game.date_release.toISOString(),
         date_created: tool.Game.date_created.toISOString(),
         date_updated: tool.Game.date_created.toISOString(),
       },
@@ -80,6 +81,7 @@ export async function getToolWithGame(id: string) {
         date_updated: tool.date_created.toISOString(),
         Game: {
           ...tool.Game,
+          date_release: tool.Game.date_release.toISOString(),
           date_created: tool.Game.date_created.toISOString(),
           date_updated: tool.Game.date_created.toISOString(),
         },
