@@ -24,6 +24,9 @@ export default async function ImageService(
       filePath = req.query.id.join('/');
     }
 
+    // eslint-disable-next-line no-console
+    console.log('filePath', filePath);
+
     fs.readFile(
       path.join(
         serverRuntimeConfig.PROJECT_ROOT,
