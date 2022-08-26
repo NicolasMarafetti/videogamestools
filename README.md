@@ -16,4 +16,4 @@ git remote set-url origin https://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@githu
 
 ### Deploying with pm2
 
-pm2 start npm --name "videogamestools" -- start
+pm2 start npm --time --name "videogamestools" -- start

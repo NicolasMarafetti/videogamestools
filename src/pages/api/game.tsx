@@ -36,7 +36,7 @@ apiRoute.post(async (req: RequestExtended, res: NextApiResponse) => {
     await saveGameImage(game.id, file);
   });
 
-  return res.status(200).end();
+  return res.status(200).json({});
 });
 
 export default apiRoute;
