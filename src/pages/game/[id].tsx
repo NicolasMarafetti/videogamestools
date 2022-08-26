@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 import GameRandomTools from '@/components/GameRandomTools';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
+import { getGameImageSource } from '@/utils/game-helpers';
 import { findGameWithId } from '@/utils/games-server';
 import { findToolsForGame } from '@/utils/tools-server';
 import { getUserFromCookie } from '@/utils/users-helpers';
@@ -41,7 +42,7 @@ export default function SeeGame(props: SeeGameProps) {
         <div
           className="relative flex-1 bg-cover bg-center"
           style={{
-            backgroundImage: `url('/assets/images/games/${props.game.id}.webp')`,
+            backgroundImage: `url('${getGameImageSource(props.game.id)}')`,
           }}
         >
           <h1 className="mx-auto mt-10 text-center text-4xl text-white">

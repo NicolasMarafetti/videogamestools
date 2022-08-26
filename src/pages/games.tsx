@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import type { GameParsed } from '@/interfaces/games';
-import { GamesParsedToGames } from '@/utils/game-helpers';
+import { GamesParsedToGames, getGameImageSource } from '@/utils/game-helpers';
 import { getGames } from '@/utils/games-server';
 import { getUserFromCookie } from '@/utils/users-helpers';
 
@@ -46,7 +46,7 @@ export default function Games(props: GamesProps) {
                   <div
                     className={`flex h-28 w-28 items-center justify-center rounded-lg bg-cover  bg-center text-white`}
                     style={{
-                      backgroundImage: `url('/assets/images/games/${game.id}.webp')`,
+                      backgroundImage: `url('${getGameImageSource(game.id)}')`,
                     }}
                   ></div>
                   <p className="text-center text-xs">{game.name}</p>

@@ -1,6 +1,8 @@
 import Link from 'next/link';
 import React from 'react';
 
+import { getGameImageSource } from '@/utils/game-helpers';
+
 interface HomeRandomToolItemProps {
   id: string;
   game: any;
@@ -9,8 +11,7 @@ interface HomeRandomToolItemProps {
 }
 
 export default function HomeRandomToolItem(props: HomeRandomToolItemProps) {
-  const backgroundImageSrc =
-    props.game && props.game.image ? `assets/images/games/lol.jpg` : '';
+  const backgroundImageSrc = getGameImageSource(props.game.id);
 
   return (
     <li className="mb-14 flex max-w-full flex-col font-light sm:w-[24vw] xl:w-[10vw]">
