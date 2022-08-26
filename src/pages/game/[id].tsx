@@ -34,7 +34,7 @@ export default function SeeGame(props: SeeGameProps) {
 
   return (
     <div className="flex flex-col items-center pb-4" id="game_tools">
-      <div className="flex h-screen w-screen flex-col">
+      <div className="flex h-screen w-full flex-col">
         {state.menuOpen && (
           <Menu state={state} setState={setState} user={user} />
         )}
