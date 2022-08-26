@@ -33,22 +33,22 @@ export default function SeeGame(props: SeeGameProps) {
   const dateRelease = new Date(props.game.date_release);
 
   return (
-    <div className="flex flex-col items-center pb-4" id="game_tools">
+    <div className="flex flex-col items-center bg-black pb-4" id="game_tools">
       <div className="flex h-screen w-full flex-col">
         {state.menuOpen && (
           <Menu state={state} setState={setState} user={user} />
         )}
         <Header state={state} setState={setState} user={user} />
         <div
-          className="relative flex-1 bg-cover bg-center"
+          className="relative mt-4 flex flex-1 items-start justify-center bg-contain bg-center bg-no-repeat"
           style={{
             backgroundImage: `url('${getGameImageSource(props.game.id)}')`,
           }}
         >
-          <h1 className="mx-auto mt-10 text-center text-4xl text-white">
+          <h1 className="mt-4 inline-block bg-black-rgba px-4 py-2 text-4xl text-white">
             {props.game ? `${props.game.name}` : ''}
           </h1>
-          <h2 className="absolute bottom-10 left-10 text-xl italic text-white">
+          <h2 className="absolute bottom-10 left-10 bg-black-rgba-dark text-xl italic text-white">
             Sorti le {dateRelease.getDate()}/{dateRelease.getMonth()}/
             {dateRelease.getFullYear()}
           </h2>
