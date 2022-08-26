@@ -7,6 +7,10 @@ module.exports = withBundleAnalyzer({
   eslint: {
     dirs: ['.'],
   },
+  env: {
+    SERVER_MEDIA_URL: process.env.SERVER_MEDIA_URL,
+    WEBSITE_URL: process.env.WEBSITE_URL,
+  },
   poweredByHeader: false,
   trailingSlash: true,
   basePath: '',
@@ -14,4 +18,7 @@ module.exports = withBundleAnalyzer({
   // So, the source code is "basePath-ready".
   // You can remove `basePath` if you don't need it.
   reactStrictMode: true,
+  serverRuntimeConfig: {
+    PROJECT_ROOT: __dirname,
+  },
 });
