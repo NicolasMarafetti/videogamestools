@@ -5,6 +5,8 @@ import React, { Fragment, useState } from 'react';
 import type { ToolWithGame } from 'utils/tools';
 import { getToolWithGame } from 'utils/tools';
 
+import { getGameImageSource } from '@/utils/game-helpers';
+
 interface SeeToolProps {
   tool: ToolWithGame;
 }
@@ -20,10 +22,7 @@ export default function SeeTool(props: SeeToolProps) {
     game: null,
   });
 
-  const imageUrl =
-    props.tool.Game && props.tool.Game.image
-      ? '/assets/images/games/lol.jpg'
-      : '/assets/images/games/default.png';
+  const imageUrl = state.game ? getGameImageSource(state.game.id) : '';
 
   return (
     <div className="flex flex-col items-center xl:pt-11" id="tool">

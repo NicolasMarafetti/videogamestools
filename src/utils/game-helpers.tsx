@@ -12,3 +12,7 @@ export function GamesParsedToGames(gamesParsed: GameParsed[]): Game[] {
     };
   });
 }
+
+export function getGameImageSource(gameId: string): string {
+  return `/assets/images/games/${gameId}.webp`;
+}
