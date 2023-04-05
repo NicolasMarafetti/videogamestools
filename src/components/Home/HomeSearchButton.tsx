@@ -17,7 +17,7 @@ export default function HomeSearchButton(props: HomeSearchButtonProps) {
 
   return (
     <button
-      className="flex w-40 items-center border-2 border-black bg-transparent p-2 text-black sm:w-60 xl:mb-4 xl:w-80 xl:p-4"
+      className="flex w-40 items-center border-2 border-black bg-transparent p-2 text-black sm:w-64 xl:mb-4 xl:w-80 xl:p-4"
       onClick={props.onClick}
     >
       <FontAwesomeIcon
