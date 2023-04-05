@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import React from 'react';
 
-import { getGameImageSource } from '@/utils/game-helpers';
-
 interface HomeRandomToolItemProps {
   id: string;
   game: any;
@@ -11,8 +9,6 @@ interface HomeRandomToolItemProps {
 }
 
 export default function HomeRandomToolItem(props: HomeRandomToolItemProps) {
-  const backgroundImageSrc = getGameImageSource(props.game.id);
-
   return (
     <li className="mb-14 flex max-w-full flex-col font-light sm:w-[24vw] xl:w-[10vw]">
       <div className="mb-4 flex justify-between sm:mb-0 sm:flex-col-reverse sm:items-center xl:w-full xl:px-4">
@@ -27,7 +23,7 @@ export default function HomeRandomToolItem(props: HomeRandomToolItemProps) {
         <div
           className="flex h-28 w-40 items-center justify-center border border-black bg-cover bg-center bg-no-repeat sm:h-[16.5vw] sm:w-[16.5vw] xl:h-[10vw] xl:w-[10vw]"
           style={{
-            backgroundImage: `url('${backgroundImageSrc}')`,
+            backgroundImage: `url('${props.game.imageSource}')`,
           }}
         >
           {props.game && !props.game.image && (

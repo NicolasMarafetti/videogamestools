@@ -13,6 +13,7 @@ datasource db {
 model Game{
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
   name          String      @unique
+  imageSource   String
   date_release  DateTime
   date_created  DateTime    @default(now())
   date_updated  DateTime    @default(now())
@@ -22,7 +23,7 @@ model Game{
 
 model PasswordResets{
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  user          String
+  user          String      @db.ObjectId
   code          String
   date_created  DateTime    @default(now())
   date_updated  DateTime    @default(now())
@@ -32,7 +33,7 @@ model PasswordResets{
 
 model Support{
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  user          String?
+  user          String?     @db.ObjectId
   type          String
   description   String
   date_created  DateTime    @default(now())
@@ -43,7 +44,7 @@ model Support{
 
 model Tool{
   id            String      @id @default(auto()) @map("_id") @db.ObjectId
-  game          String
+  game          String      @db.ObjectId
   name          String
   url           String
   description   String

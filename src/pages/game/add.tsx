@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 
-import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import { getUserFromCookie } from '@/utils/users-helpers';
 
@@ -52,7 +51,6 @@ export default function AddGame() {
   return (
     <div>
       {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
-      <Header state={state} setState={setState} user={user} />
       <main className="px-4">
         <h1 className="my-2 text-center">Add a game</h1>
         <form onSubmit={formSubmit}>

@@ -6,7 +6,6 @@ import type { FormEvent } from 'react';
 import React, { useEffect, useRef, useState } from 'react';
 import Cookies from 'universal-cookie';
 
-import Header from '@/components/Header';
 import Menu from '@/components/Menu';
 import { countries } from '@/config/countries';
 import { getUserFromCookie } from '@/utils/users-helpers';
@@ -107,7 +106,6 @@ export default function Signin() {
   return (
     <div className="sm:flex sm:flex-col xl:items-center" id="sign_in">
       {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
-      <Header state={state} setState={setState} user={user} />
       <h1 className="my-2 text-center">Create an account</h1>
       <form className="px-5 xl:w-[45vw]" onSubmit={submit}>
         <div className="flex flex-wrap justify-between xl:max-w-full">

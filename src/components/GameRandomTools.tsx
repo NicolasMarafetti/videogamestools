@@ -3,8 +3,6 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 import { isMobile } from 'react-device-detect';
 
-import { getGameImageSource } from '@/utils/game-helpers';
-
 interface GameRandomToolsProps {
   game: Game;
   tools: Tool[];
@@ -32,7 +30,7 @@ export default function GameRandomTools(props: GameRandomToolsProps) {
             <div
               className="h-[26vw] w-[26vw] bg-cover bg-center sm:h-[15vw] sm:w-[15vw] xl:h-[12vw] xl:w-[12vw]"
               style={{
-                backgroundImage: `url('${getGameImageSource(props.game.id)}')`,
+                backgroundImage: `url('${props.game.imageSource}')`,
               }}
             ></div>
             <h2 className="max-w-full overflow-hidden truncate">{tool.name}</h2>

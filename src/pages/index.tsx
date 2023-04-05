@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRandomToolsServerSide } from 'utils/tools';
 
-import Header from '@/components/Header';
 import HomePresentation from '@/components/Home/HomePresentation';
 import HomeRandomTools from '@/components/Home/HomeRandomTools';
 import HomeSearchButton from '@/components/Home/HomeSearchButton';
@@ -57,7 +56,6 @@ const Index = (props: IndexProps) => {
         description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
       />
       {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
-      <Header state={state} setState={setState} user={user} />
       <main className="relative">
         {state.searching && <HomeSearching stopSearching={stopSearching} />}
         <div className="px-3">

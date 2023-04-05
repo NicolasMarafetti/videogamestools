@@ -5,9 +5,7 @@ import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
 
 import GameRandomTools from '@/components/GameRandomTools';
-import Header from '@/components/Header';
 import Menu from '@/components/Menu';
-import { getGameImageSource } from '@/utils/game-helpers';
 import { findGameWithId } from '@/utils/games-server';
 import { findToolsForGame } from '@/utils/tools-server';
 import { getUserFromCookie } from '@/utils/users-helpers';
@@ -38,11 +36,10 @@ export default function SeeGame(props: SeeGameProps) {
         {state.menuOpen && (
           <Menu state={state} setState={setState} user={user} />
         )}
-        <Header state={state} setState={setState} user={user} />
         <div
           className="relative mt-4 flex flex-1 items-start justify-center bg-contain bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url('${getGameImageSource(props.game.id)}')`,
+            backgroundImage: `url('${props.game.imageSource}')`,
           }}
         >
           <h1 className="mt-4 inline-block bg-black-rgba px-4 py-2 text-4xl text-white">
