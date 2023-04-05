@@ -9,6 +9,8 @@ export default async function createGames() {
       {
         id: '6304f08251c2b04d79d669c3',
         name: 'League of Legends',
+        imageSource:
+          'https://logo-marque.com/wp-content/uploads/2020/11/League-of-Legends-Embleme.png',
         date_release: set(new Date(), {
           date: 27,
           month: 10,

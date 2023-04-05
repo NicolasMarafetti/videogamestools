@@ -3,9 +3,14 @@ import sharp from 'sharp';
 
 const sizeOf = require('image-size');
 
-export async function createGame(gameName: string, dateRelease: Date) {
+export async function createGame(
+  gameName: string,
+  imageSource: string,
+  dateRelease: Date
+) {
   const game = await prisma.game.create({
     data: {
+      imageSource,
       name: gameName,
       date_release: dateRelease,
     },
