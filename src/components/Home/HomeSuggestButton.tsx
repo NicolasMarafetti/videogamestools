@@ -13,8 +13,8 @@ export default function HomeSuggestButton() {
 
   return (
     <Link href="/add_tool">
-      <a className="flex w-40 items-center rounded-full border-2 border-neutral-600 bg-none p-1 font-light">
-        <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-full border-2 border-neutral-600">
+      <a className="flex w-40 items-center rounded-full border-2 border-white bg-none p-1 font-light text-white">
+        <div className="mr-4 flex h-8 w-8 items-center justify-center rounded-full border-2 border-white">
           <FontAwesomeIcon className="w-4" icon={faPlus} />
         </div>
         {mobile ? 'Suggest' : 'Suggest a tool'}

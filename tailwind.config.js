@@ -15,6 +15,9 @@ module.exports = {
       '6xl': '4rem',
     },
     extend: {
+      backgroundImage: {
+        'header-background': "url('/assets/images/header_background.png')",
+      },
       colors: {
         'black-rgba': 'rgba(0, 0, 0, 0.4)',
         'black-rgba-dark': 'rgba(0, 0, 0, 0.7)',

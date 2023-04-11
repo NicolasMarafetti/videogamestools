@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getRandomToolsServerSide } from 'utils/tools';
 
-import HomePresentation from '@/components/Home/HomePresentation';
 import HomeRandomTools from '@/components/Home/HomeRandomTools';
 import HomeSearchButton from '@/components/Home/HomeSearchButton';
 import HomeSearching from '@/components/Home/HomeSearching';
@@ -50,7 +49,7 @@ const Index = (props: IndexProps) => {
   };
 
   return (
-    <div id="home">
+    <div className="min-h-screen bg-[#0e1927]" id="home">
       <Meta
         title="Next.js Boilerplate Presentation"
         description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
@@ -64,14 +63,11 @@ const Index = (props: IndexProps) => {
             <HomeSuggestButton />
           </div>
           {mobileType === 'desktop' && (
-            <h1 className="text-center xl:mb-24">
+            <h1 className="text-center text-white xl:mb-24">
               The video games collective toolbox
             </h1>
           )}
-          <div className="flex">
-            <HomeRandomTools tools={props.tools} />
-            {mobileType === 'desktop' && <HomePresentation />}
-          </div>
+          <HomeRandomTools tools={props.tools} />
         </div>
       </main>
     </div>

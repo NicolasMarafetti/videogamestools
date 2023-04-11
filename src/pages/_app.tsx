@@ -7,10 +7,7 @@ import Header from '@/components/Header';
 import { getUserFromCookie } from '@/utils/users-helpers';
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
-  const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const [user, setUser] = useState(null);
-
-  const onOpenMenu = () => setMenuOpen(true);
 
   useEffect(() => {
     setUser(getUserFromCookie());
@@ -18,7 +15,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 
   return (
     <>
-      <Header menuOpen={menuOpen} onOpenMenu={onOpenMenu} user={user} />
+      <Header user={user} />
       <Component {...pageProps} />
     </>
   );
