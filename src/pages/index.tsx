@@ -7,7 +7,6 @@ import HomeSearching from '@/components/Home/HomeSearching';
 import HomeSuggestButton from '@/components/Home/HomeSuggestButton';
 import Menu from '@/components/Menu';
 import type { ToolObjectWithGame } from '@/interfaces/tools';
-import { Meta } from '@/layouts/Meta';
 import { getDeviceType } from '@/utils/device';
 import { getUserFromCookie } from '@/utils/users-helpers';
 
@@ -50,10 +49,6 @@ const Index = (props: IndexProps) => {
 
   return (
     <div className="min-h-screen bg-[#0e1927]" id="home">
-      <Meta
-        title="Next.js Boilerplate Presentation"
-        description="Next js Boilerplate is the perfect starter code for your project. Build your React application with the Next.js framework."
-      />
       {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
       <main className="relative">
         {state.searching && <HomeSearching stopSearching={stopSearching} />}
