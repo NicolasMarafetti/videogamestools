@@ -16,6 +16,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: {
+        'games-left-background':
+          "url('/assets/images/gamesPage/background-left.webp')",
+        'games-right-background':
+          "url('/assets/images/gamesPage/background-right.webp')",
         'header-background': "url('/assets/images/header_background.png')",
       },
       colors: {

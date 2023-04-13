@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { getRandomToolsServerSide } from 'utils/tools';
 
+import Header from '@/components/Header';
 import HomeRandomTools from '@/components/Home/HomeRandomTools';
 import HomeSearchButton from '@/components/Home/HomeSearchButton';
 import HomeSearching from '@/components/Home/HomeSearching';
@@ -49,6 +50,7 @@ const Index = (props: IndexProps) => {
 
   return (
     <div className="min-h-screen bg-[#0e1927]" id="home">
+      <Header user={null} />
       {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
       <main className="relative">
         {state.searching && <HomeSearching stopSearching={stopSearching} />}

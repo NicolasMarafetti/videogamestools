@@ -34,7 +34,7 @@ export default function Header(props: HeaderProps) {
     <header className=" relative flex h-[11vh] items-center justify-center bg-header-background bg-cover bg-center sm:h-[13vh] xl:relative xl:h-[9.26vh]">
       <Link href="/">
         <img
-          className="w-32 cursor-pointer self-center justify-self-center sm:w-52"
+          className="w-32 cursor-pointer self-center justify-self-center"
           src={logoToUse}
           alt="logo medium"
         />
