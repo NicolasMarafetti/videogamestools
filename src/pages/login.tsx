@@ -2,11 +2,10 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Cookies from 'universal-cookie';
 
 import Menu from '@/components/Menu';
-import { getUserFromCookie } from '@/utils/users-helpers';
 
 interface LoginState {
   error: string;
@@ -24,16 +23,11 @@ export default function Login() {
     menuOpen: false,
     success: false,
   });
-  const [user, setUser] = useState(null);
 
   const identifierInput = useRef<HTMLInputElement>(null);
   const passwordInput = useRef<HTMLInputElement>(null);
 
   const router = useRouter();
-
-  useEffect(() => {
-    setUser(getUserFromCookie());
-  }, []);
 
   const submit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -73,7 +67,7 @@ export default function Login() {
 
   return (
     <div id="log_in">
-      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      <Menu />
       <main className="flex flex-col px-6 xl:flex-col xl:items-center">
         <h1 className="my-2 text-center">Log In</h1>
         <form className="mb-5 flex flex-col px-5 xl:w-[45vw]" onSubmit={submit}>

@@ -20,7 +20,7 @@ export default function Games(props: GamesProps) {
     <div className="flex min-h-screen flex-col bg-black-rgba-dark">
       <Header user={null} />
 
-      <Menu user={null} />
+      <Menu />
 
       <main className="flex flex-1 justify-center bg-[#13171a]">
         <div className="flex-1 bg-games-left-background bg-cover"></div>

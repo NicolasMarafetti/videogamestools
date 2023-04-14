@@ -2,13 +2,12 @@ import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { Game, Tool } from '@prisma/client';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
 import GameRandomTools from '@/components/GameRandomTools';
 import Menu from '@/components/Menu';
 import { findGameWithId } from '@/utils/games-server';
 import { findToolsForGame } from '@/utils/tools-server';
-import { getUserFromCookie } from '@/utils/users-helpers';
 
 interface SeeGameProps {
   error: string;
@@ -19,23 +18,12 @@ interface SeeGameProps {
 }
 
 export default function SeeGame(props: SeeGameProps) {
-  const [state, setState] = useState({
-    menuOpen: false,
-  });
-  const [user, setUser] = useState(null);
-
-  useEffect(() => {
-    setUser(getUserFromCookie());
-  }, []);
-
   const dateRelease = new Date(props.game.date_release);
 
   return (
     <div className="flex flex-col items-center bg-black pb-4" id="game_tools">
       <div className="flex h-screen w-full flex-col">
-        {state.menuOpen && (
-          <Menu state={state} setState={setState} user={user} />
-        )}
+        <Menu />
         <div
           className="relative mt-4 flex flex-1 items-start justify-center bg-contain bg-center bg-no-repeat"
           style={{

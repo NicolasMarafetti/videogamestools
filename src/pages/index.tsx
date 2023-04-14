@@ -9,7 +9,6 @@ import HomeSuggestButton from '@/components/Home/HomeSuggestButton';
 import Menu from '@/components/Menu';
 import type { ToolObjectWithGame } from '@/interfaces/tools';
 import { getDeviceType } from '@/utils/device';
-import { getUserFromCookie } from '@/utils/users-helpers';
 
 interface IndexProps {
   tools: ToolObjectWithGame[];
@@ -18,11 +17,9 @@ interface IndexProps {
 const Index = (props: IndexProps) => {
   const [searching, setSearching] = useState<boolean>(false);
 
-  const [user, setUser] = useState(null);
   const [mobileType, setMobileType] = useState('desktop');
 
   useEffect(() => {
-    setUser(getUserFromCookie());
     setMobileType(getDeviceType());
   }, []);
 
@@ -37,7 +34,7 @@ const Index = (props: IndexProps) => {
   return (
     <div className="min-h-screen bg-[#0e1927]" id="home">
       <Header user={null} />
-      <Menu user={user} />
+      <Menu />
       <main className="relative">
         {searching && <HomeSearching stopSearching={stopSearching} />}
         <div className="px-3">

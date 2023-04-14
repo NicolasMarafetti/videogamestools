@@ -3,12 +3,11 @@ import axios from 'axios';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import Cookies from 'universal-cookie';
 
 import Menu from '@/components/Menu';
 import { countries } from '@/config/countries';
-import { getUserFromCookie } from '@/utils/users-helpers';
 
 const cookies = new Cookies();
 
@@ -26,11 +25,6 @@ export default function Signin() {
     menuOpen: false,
     success: false,
   });
-
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUser(getUserFromCookie());
-  }, []);
 
   const router = useRouter();
 
@@ -105,7 +99,7 @@ export default function Signin() {
 
   return (
     <div className="sm:flex sm:flex-col xl:items-center" id="sign_in">
-      {state.menuOpen && <Menu user={user} />}
+      <Menu />
       <h1 className="my-2 text-center">Create an account</h1>
       <form className="px-5 xl:w-[45vw]" onSubmit={submit}>
         <div className="flex flex-wrap justify-between xl:max-w-full">

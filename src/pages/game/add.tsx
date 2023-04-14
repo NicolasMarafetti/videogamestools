@@ -1,26 +1,12 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import type { FormEvent } from 'react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 
 import Menu from '@/components/Menu';
-import { getUserFromCookie } from '@/utils/users-helpers';
-
-interface AddGameState {
-  error: string;
-  menuOpen: boolean;
-}
 
 export default function AddGame() {
-  const [state, setState] = useState<AddGameState>({
-    error: '',
-    menuOpen: false,
-  });
-
-  const [user, setUser] = useState(null);
-  useEffect(() => {
-    setUser(getUserFromCookie());
-  }, []);
+  const [error, setError] = useState<string>('');
 
   const nameInput = useRef<HTMLInputElement>(null);
   const imageInput = useRef<HTMLInputElement>(null);
@@ -40,17 +26,16 @@ export default function AddGame() {
       await axios.post('/api/game/', formData);
 
       router.push('/games');
-    } catch (error) {
-      setState({
-        ...state,
-        error: 'Error during save',
-      });
+    } catch (errorTmp) {
+      // eslint-disable-next-line no-console
+      console.error(errorTmp);
+      setError('Error during save');
     }
   };
 
   return (
     <div>
-      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      <Menu />
       <main className="px-4">
         <h1 className="my-2 text-center">Add a game</h1>
         <form onSubmit={formSubmit}>
@@ -86,7 +71,7 @@ export default function AddGame() {
               required
             />
           </div>
-          {state.error && <p className="text-red-500">{state.error}</p>}
+          {error && <p className="text-red-500">{error}</p>}
           <input className="my-6 mx-auto block" type="submit" value="Create" />
         </form>
       </main>
