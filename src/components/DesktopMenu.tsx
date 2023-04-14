@@ -11,7 +11,7 @@ interface DesktopMenuProps {
 export default function DesktopMenu(props: DesktopMenuProps) {
   return (
     <div
-      className="absolute inset-y-0 right-10 flex w-[24vw] justify-between py-3 text-white"
+      className="absolute inset-y-0 right-10 hidden w-[24vw] justify-between py-3 text-white xl:flex"
       id="desktop_menu"
     >
       <ul className="flex flex-wrap justify-between">

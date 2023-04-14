@@ -2,6 +2,9 @@
 module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
+    fontFamily: {
+      caveat: ['Caveat', 'ui-serif'],
+    },
     fontSize: {
       xs: '0.75rem',
       sm: '0.875rem',
@@ -21,6 +24,8 @@ module.exports = {
         'games-right-background':
           "url('/assets/images/gamesPage/background-right.webp')",
         'header-background': "url('/assets/images/header_background.png')",
+        'support-header-background':
+          "url('/assets/images/support-header-background.webp')",
       },
       colors: {
         'black-rgba': 'rgba(0, 0, 0, 0.4)',

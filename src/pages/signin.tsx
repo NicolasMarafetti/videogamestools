@@ -105,7 +105,7 @@ export default function Signin() {
 
   return (
     <div className="sm:flex sm:flex-col xl:items-center" id="sign_in">
-      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      {state.menuOpen && <Menu user={user} />}
       <h1 className="my-2 text-center">Create an account</h1>
       <form className="px-5 xl:w-[45vw]" onSubmit={submit}>
         <div className="flex flex-wrap justify-between xl:max-w-full">

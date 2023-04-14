@@ -1,25 +1,17 @@
-import type { User } from '@prisma/client';
 import { useRouter } from 'next/router';
-import React, { Fragment, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 
-import { changePage, closeMenu } from '@/utils/menu-helpers';
-import { logOut } from '@/utils/users-helpers';
+import { useMenu } from '@/context/MenuContext';
 
-interface MenuProps {
-  setState: any;
-  state: any;
-  user: null | User;
-}
-
-export default function Menu(props: MenuProps) {
+export default function Menu() {
   const menuContentRef = useRef<HTMLDivElement>(null);
+  const { closeMenu, menuIsOpen } = useMenu();
 
   const router = useRouter();
 
   const handleClickOutside = (event: any) => {
     if (menuContentRef && menuContentRef.current) {
-      if (!menuContentRef.current.contains(event.target))
-        closeMenu(props.setState, props.state);
+      if (!menuContentRef.current.contains(event.target)) closeMenu();
     }
   };
 
@@ -32,16 +24,15 @@ export default function Menu(props: MenuProps) {
   });
 
   const onChangePage = (page: string) => {
-    changePage(page, props.setState, props.state);
-  };
-
-  const onLogOff = () => {
-    logOut(router);
+    closeMenu();
+    router.push(page);
   };
 
   return (
     <div
-      className="absolute left-0 top-0 z-10 h-screen w-screen bg-black-rgba"
+      className={`absolute top-0 z-10 h-screen w-screen bg-black-rgba duration-500 ${
+        menuIsOpen ? 'left-0' : '-left-full'
+      }`}
       id="menu"
     >
       <div
@@ -65,30 +56,6 @@ export default function Menu(props: MenuProps) {
               Games List
             </button>
           </li>
-          {!props.user ? (
-            <Fragment>
-              <li className="pb-4 text-sm font-light">
-                <button
-                  className=" border-0 text-sm font-light text-black"
-                  onClick={() => onChangePage('/signin')}
-                >
-                  Create an account
-                </button>
-              </li>
-              <li className="pb-4 text-sm font-light">
-                <button
-                  className=" border-0 text-sm font-light text-black"
-                  onClick={() => onChangePage('/login')}
-                >
-                  Log in
-                </button>
-              </li>
-            </Fragment>
-          ) : (
-            <li className="pb-4 text-sm font-light" onClick={onLogOff}>
-              Log off
-            </li>
-          )}
           <li className="pb-4 text-sm font-light">
             <button
               className=" border-0 text-sm font-light text-black"

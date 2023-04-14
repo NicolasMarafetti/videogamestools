@@ -15,16 +15,8 @@ interface IndexProps {
   tools: ToolObjectWithGame[];
 }
 
-interface IndexState {
-  searching: boolean;
-  menuOpen: boolean;
-}
-
 const Index = (props: IndexProps) => {
-  const [state, setState] = useState<IndexState>({
-    menuOpen: false,
-    searching: false,
-  });
+  const [searching, setSearching] = useState<boolean>(false);
 
   const [user, setUser] = useState(null);
   const [mobileType, setMobileType] = useState('desktop');
@@ -35,25 +27,19 @@ const Index = (props: IndexProps) => {
   }, []);
 
   const searchButtonClicked = () => {
-    setState({
-      ...state,
-      searching: true,
-    });
+    setSearching(true);
   };
 
   const stopSearching = () => {
-    setState({
-      ...state,
-      searching: false,
-    });
+    setSearching(false);
   };
 
   return (
     <div className="min-h-screen bg-[#0e1927]" id="home">
       <Header user={null} />
-      {state.menuOpen && <Menu state={state} setState={setState} user={user} />}
+      <Menu user={user} />
       <main className="relative">
-        {state.searching && <HomeSearching stopSearching={stopSearching} />}
+        {searching && <HomeSearching stopSearching={stopSearching} />}
         <div className="px-3">
           <div className="flex justify-between pt-3 xl:flex-col xl:items-end">
             <HomeSearchButton onClick={searchButtonClicked} />

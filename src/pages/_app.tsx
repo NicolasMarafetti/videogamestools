@@ -3,6 +3,8 @@ import '../styles/global.css';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 
+import { MenuProvider } from '@/context/MenuContext';
+
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return (
     <>
@@ -14,7 +16,9 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
         />
       </Head>
 
-      <Component {...pageProps} />
+      <MenuProvider>
+        <Component {...pageProps} />
+      </MenuProvider>
     </>
   );
 };

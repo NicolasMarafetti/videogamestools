@@ -1,6 +1,6 @@
 import type { Game } from '@prisma/client';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 import Header from '@/components/Header';
@@ -13,22 +13,14 @@ interface GamesProps {
   games: GameParsed[];
 }
 
-interface GamesState {
-  menuOpen: boolean;
-}
-
 export default function Games(props: GamesProps) {
-  const [state, setState] = useState<GamesState>({
-    menuOpen: false,
-  });
-
   const games: Game[] = GamesParsedToGames(props.games);
 
   return (
     <div className="flex min-h-screen flex-col bg-black-rgba-dark">
       <Header user={null} />
 
-      {state.menuOpen && <Menu state={state} setState={setState} user={null} />}
+      <Menu user={null} />
 
       <main className="flex flex-1 justify-center bg-[#13171a]">
         <div className="flex-1 bg-games-left-background bg-cover"></div>

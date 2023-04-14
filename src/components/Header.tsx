@@ -1,9 +1,10 @@
 import type { User } from '@prisma/client';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
+import { FaBars } from 'react-icons/fa';
 
-import { getDeviceType } from '@/utils/device';
+import { MenuContext } from '@/context/MenuContext';
 import { logOut } from '@/utils/users-helpers';
 
 import DesktopMenu from './DesktopMenu';
@@ -13,18 +14,8 @@ interface HeaderProps {
 }
 
 export default function Header(props: HeaderProps) {
-  const [deviceType, setDeviceType] = useState('desktop');
-
-  const logoToUse =
-    deviceType === 'mobile_horizontal'
-      ? '/assets/images/logo/logo-full.png'
-      : '/assets/images/logo/logo-medium.png';
-
   const router = useRouter();
-
-  useEffect(() => {
-    setDeviceType(getDeviceType());
-  });
+  const { openMenu } = useContext(MenuContext);
 
   const onLogOff = () => {
     logOut(router);
@@ -32,16 +23,18 @@ export default function Header(props: HeaderProps) {
 
   return (
     <header className=" relative flex h-[11vh] items-center justify-center bg-header-background bg-cover bg-center sm:h-[13vh] xl:relative xl:h-[9.26vh]">
+      <FaBars
+        className="absolute left-5 top-5 h-6 w-6 text-white"
+        onClick={openMenu}
+      />
       <Link href="/">
         <img
           className="w-32 cursor-pointer self-center justify-self-center"
-          src={logoToUse}
+          src={'/assets/images/logo/logo-full.png'}
           alt="logo medium"
         />
       </Link>
-      {deviceType === 'desktop' && (
-        <DesktopMenu logOff={onLogOff} user={props.user} />
-      )}
+      <DesktopMenu logOff={onLogOff} user={props.user} />
     </header>
   );
 }
