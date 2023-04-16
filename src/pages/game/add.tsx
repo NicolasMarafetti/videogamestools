@@ -20,8 +20,8 @@ export default function AddGame() {
 
       const formData = new FormData();
       formData.append('name', nameInput.current!.value);
+      formData.append('imageSource', imageInput.current!.value);
       formData.append('date_release', dateReleaseInput.current!.value);
-      formData.append('image', imageInput.current!.files![0]!);
 
       await axios.post('/api/game/', formData);
 
@@ -57,7 +57,12 @@ export default function AddGame() {
               <br />
               <span className="text-xs italic">Min width: 1920px</span>
             </label>
-            <input id="image" ref={imageInput} type="file" required />
+            <input
+              className="border border-black"
+              type="text"
+              ref={imageInput}
+              required
+            />
           </div>
           <div className="my-6">
             <label className="mr-4 inline-block w-24" htmlFor="date_release">
