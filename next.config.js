@@ -19,7 +19,7 @@ module.exports = withBundleAnalyzer({
       'logo-marque.com',
       'lol-marque.com',
       'm.media-amazon.com',
-      'upload.wikimedia.org'
+      'upload.wikimedia.org',
     ],
   },
   poweredByHeader: false,
