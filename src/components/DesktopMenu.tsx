@@ -29,24 +29,6 @@ export default function DesktopMenu(props: DesktopMenuProps) {
             <a className="text-white">Support</a>
           </Link>
         </li>
-        {props.user ? (
-          <li className="cursor-pointer px-2" onClick={props.logOff}>
-            Log out
-          </li>
-        ) : (
-          <>
-            <li className="px-2">
-              <Link href="/signin">
-                <a className="text-white">Sign in</a>
-              </Link>
-            </li>
-            <li className="px-2">
-              <Link href="/login">
-                <a className="text-white">Log in</a>
-              </Link>
-            </li>
-          </>
-        )}
       </ul>
     </div>
   );

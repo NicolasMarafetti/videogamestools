@@ -35,7 +35,7 @@ const Index = (props: IndexProps) => {
     <div className="min-h-screen bg-[#0e1927]" id="home">
       <Header user={null} />
       <Menu />
-      <main className="relative">
+      <main>
         {searching && <HomeSearching stopSearching={stopSearching} />}
         <div className="px-3">
           <div className="flex justify-between pt-3 xl:flex-col xl:items-end">

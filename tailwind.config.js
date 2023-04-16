@@ -24,6 +24,8 @@ module.exports = {
         'games-right-background':
           "url('/assets/images/gamesPage/background-right.webp')",
         'header-background': "url('/assets/images/header_background.png')",
+        'search-game-background':
+          "url('/assets/images/search-game-background.webp')",
         'support-header-background':
           "url('/assets/images/support-header-background.webp')",
       },
